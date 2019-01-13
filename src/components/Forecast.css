@@ -1,0 +1,56 @@
+.forecast {
+  width: 400px;
+  font-family: sans-serif;
+}
+
+.fc-header {
+  display: flex;
+  justify-content: space-between;
+  min-height: 200px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 1rem;
+  color: #fff;
+}
+
+.fc-headinfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.fc-header h3 {
+  font-weight: 400;
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.fc-header span {
+  display: block;
+  font-size: 0.8rem;
+}
+
+.fc-temp {
+  font-size: 3rem !important;
+  font-weight: 300;
+}
+
+.fc-footer {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+}
+
+.fc-footer h5 {
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.fc-footer > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+}

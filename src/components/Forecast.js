@@ -1,4 +1,6 @@
 import React from "react";
+import Searchbar from "./Searchbar";
+
 import "./Forecast.css";
 
 const BASE_URL = "https://api.unsplash.com/search/photos/?page=1&query=";
@@ -13,40 +15,47 @@ class Forecast extends React.Component {
     };
 
     this.setResults = this.setResults.bind(this);
+    this.changeBG = this.changeBG.bind(this);
   }
 
   setResults(data) {
     this.setState({ results: data });
-    console.log(data);
+  }
+
+  changeBG() {
+    const url = `${BASE_URL}${this.props.info.weather[0].description}`;
+
+    fetch(url, { headers: { Authorization: `Client-ID ${API_KEY}` } })
+      .then(response => response.json())
+      .then(data => {
+        const fch = document.querySelector(".forecast");
+        let imgPath =
+          data.results[Math.ceil(Math.random() * data.results.length - 1)].urls;
+        fch.style.background = `url(${imgPath.small})`;
+        fch.style.backgroundRepeat = "no-repeat";
+        fch.style.backgroundSize = "cover";
+        this.props.bg(imgPath.regular);
+      });
   }
 
   componentDidMount() {
-    const url = `${BASE_URL}${this.props.info.weather[0].description}`;
+    this.changeBG();
+  }
 
-    fetch(url, {
-      headers: {
-        Authorization: `Client-ID ${API_KEY}`
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        const fch = document.querySelector(".fc-header");
-        fch.style.background = `url(${
-          data.results[Math.ceil(Math.random() * data.results.length - 1)].urls
-            .small
-        })`;
-      });
+  componentWillUpdate() {
+    this.changeBG();
   }
 
   render() {
     const { info } = this.props;
+
     let sunrise = new Date(info.sys.sunrise * 1000);
     let sunset = new Date(info.sys.sunset * 1000);
     let today = new Date(Date.now());
 
     return (
       <div className="forecast">
+        <Searchbar search={this.props.search} />
         <div className="fc-header">
           <div className="fc-headinfo">
             <div>
@@ -72,25 +81,39 @@ class Forecast extends React.Component {
         </div>
 
         <div className="fc-footer">
-          <div>
-            <h5>winds</h5>
-            <small>{info.wind.speed} mph</small>
+          <div className="fc-footer__cell">
+            <div className="winds" />
+            <div>
+              <h5>winds</h5>
+              <small>{info.wind.speed} mph</small>
+            </div>
           </div>
-          <div>
-            <h5>humidity</h5>
-            <small>{info.main.humidity}%</small>
+
+          <div className="fc-footer__cell">
+            <div className="humidity" />
+            <div>
+              <h5>humidity</h5>
+              <small>{info.main.humidity}%</small>
+            </div>
           </div>
-          <div>
-            <h5>sunrise</h5>
-            <small>
-              {sunrise.getHours()}:{sunrise.getMinutes()}
-            </small>
+
+          <div className="fc-footer__cell">
+            <div className="sunset" />
+            <div>
+              <h5>sunrise</h5>
+              <small>
+                {sunrise.getHours()}:{sunrise.getMinutes()}
+              </small>
+            </div>
           </div>
-          <div>
-            <h5>sunset</h5>
-            <small>
-              {sunset.getHours()}:{sunset.getMinutes()}
-            </small>
+          <div className="fc-footer__cell">
+            <div className="sunrise" />
+            <div>
+              <h5>sunset</h5>
+              <small>
+                {sunset.getHours()}:{sunset.getMinutes()}
+              </small>
+            </div>
           </div>
         </div>
       </div>

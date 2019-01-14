@@ -5,39 +5,39 @@ class Searchbar extends React.Component {
   constructor(props) {
     super(props);
 
-    this.btnControl = React.createRef();
-    this.inputControl = React.createRef();
+    this.state = {
+      userInput: ""
+    };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleKeydown = this.handleKeydown.bind(this);
   }
 
-  handleClick() {
-    this.btnControl.current.classList.toggle("close");
-    this.inputControl.current.classList.toggle("square");
+  handleChange(e) {
+    e.persist();
 
-    if (this.btnControl.current.classList.contains("close")) {
-      this.inputControl.current.focus();
-    } else {
-      this.inputControl.current.blur();
+    this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleKeydown(e) {
+    if (e.key === "Enter" && this.state.userInput !== "") {
+      this.props.search(this.state.userInput);
+      this.setState({ userInput: "" });
+      e.target.value = "";
     }
   }
 
   render() {
     return (
-      <form id="content">
+      <div className="searchbar">
         <input
           type="text"
-          name="input"
-          ref={this.inputControl}
-          className="input"
+          name="userInput"
+          placeholder="i.e new york, US"
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeydown}
         />
-        <button
-          type="reset"
-          className="btn-search"
-          ref={this.btnControl}
-          onClick={this.handleClick}
-        />
-      </form>
+      </div>
     );
   }
 }

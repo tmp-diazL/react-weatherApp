@@ -1,140 +1,23 @@
-#content {
-  position: absolute;
-  height: 50px;
-  width: 300px;
-  top: 3rem;
-  right: 0;
+.searchbar {
+  width: 400px;
+  padding: 0 1rem 0.2rem 1rem;
 }
 
-/* #content.on {
-  -webkit-animation-name: in-out;
-  animation-name: in-out;
-  -webkit-animation-duration: 0.7s;
-  animation-duration: 0.7s;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
-} */
-
-input {
-  box-sizing: border-box;
-  width: 2rem;
-  height: 2rem;
-  border: 4px solid #ffffff;
-  border-radius: 50%;
-  background: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 400;
-  font-family: Roboto;
-  outline: 0;
-  -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-    padding 0.2s;
-  transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out,
-    padding 0.2s;
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
+input[type="text"] {
+  width: 0;
+  height: 1.8rem;
+  border: none;
+  font-size: 1.2rem;
+  background: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDcwIDcwIiBoZWlnaHQ9IjcwcHgiIGlkPSJJY29ucyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgNzAgNzAiIHdpZHRoPSI3MHB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48cGF0aCBkPSJNNTEuOTU3LDQ5LjEyOWwtOC43MTMtOC43MTNjMS43NS0yLjMzNywyLjc5OS01LjIyOSwyLjc5OS04LjM3M2MwLTcuNzMyLTYuMjY4LTE0LTE0LTE0cy0xNCw2LjI2OC0xNCwxNHM2LjI2OCwxNCwxNCwxNCAgYzMuMTQ0LDAsNi4wMzYtMS4wNDksOC4zNzMtMi43OTlsOC43MTMsOC43MTNMNTEuOTU3LDQ5LjEyOXogTTIyLjA0MywzMi4wNDNjMC01LjUxNCw0LjQ4Ni0xMCwxMC0xMGM1LjUxNCwwLDEwLDQuNDg2LDEwLDEwICBjMCw1LjUxNC00LjQ4NiwxMC0xMCwxMEMyNi41MjksNDIuMDQzLDIyLjA0MywzNy41NTcsMjIuMDQzLDMyLjA0M3oiLz48L3N2Zz4=");
+  filter: invert(1);
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  outline: none;
+  transition: width 0.9s ease-in-out;
+  padding-left: 2rem;
 }
 
-.btn-search {
-  background: none;
-  position: absolute;
-  top: 0px;
-  left: -2px;
-  height: 2rem;
-  width: 2rem;
-  padding: 0;
-  border-radius: 100%;
-  outline: 0;
-  border: 0;
-  color: inherit;
-  cursor: pointer;
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
-}
-
-.btn-search:before {
-  content: "";
-  position: absolute;
-  width: 17px;
-  height: 4px;
-  background-color: #fff;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-
-  margin-top: 20px;
-  margin-left: 12px;
-
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-}
-
-.close {
-  -webkit-transition: 0.4s ease-in-out;
-  transition: 0.4s ease-in-out;
-  -webkit-transition-delay: 0.4s;
-  transition-delay: 0.4s;
-}
-
-.close:before {
-  content: "";
-  position: absolute;
-  width: 27px;
-  height: 4px;
-
-  margin-top: -1px;
-  margin-left: -13px;
-
-  background-color: #fff;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  -webkit-transition: 0.2s ease-in-out;
-  transition: 0.2s ease-in-out;
-}
-
-.close:after {
-  content: "";
-  position: absolute;
-  width: 27px;
-  height: 4px;
-  background-color: #fff;
-  margin-top: -1px;
-  margin-left: -13px;
-  cursor: pointer;
-  -webkit-transform: rotate(-45deg);
-  -ms-transform: rotate(-45deg);
-  transform: rotate(-45deg);
-}
-
-.square {
-  box-sizing: border-box;
-  padding: 0 40px 0 10px;
-  width: 380px;
-  height: 50px;
-  border: 4px solid #ffffff;
-  border-radius: 0;
-  background: none;
-  color: #fff;
-  font-family: Roboto;
-  font-size: 16px;
-  font-weight: 400;
-  outline: 0;
-  -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
-    padding 0.2s;
-  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out,
-    padding 0.2s;
-  -webkit-transition-delay: 0.4s, 0s, 0.4s;
-  transition-delay: 0.4s, 0s, 0.4s;
-  -webkit-transform: translate(-100%, -50%);
-  -ms-transform: translate(-100%, -50%);
-  transform: translate(-100%, -50%);
+input[type="text"]:focus {
+  width: 80%;
+  border-bottom: 1px solid #000;
 }
